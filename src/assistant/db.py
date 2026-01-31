@@ -30,7 +30,7 @@ class Database:
                 due_at TEXT,
                 created_at TEXT,
                 source TEXT,
-                references TEXT,
+                references_json TEXT,
                 status TEXT,
                 raw_json TEXT
             );
@@ -52,9 +52,7 @@ class Database:
             );
             """
         )
-        self._conn.execute(
-            "CREATE INDEX IF NOT EXISTS idx_items_user ON items(user_id);"
-        )
+        self._conn.execute("CREATE INDEX IF NOT EXISTS idx_items_user ON items(user_id);")
         self._conn.execute(
             "CREATE INDEX IF NOT EXISTS idx_items_due ON items(due_at);"
         )
@@ -95,7 +93,7 @@ class Database:
             INSERT INTO items (
                 id, user_id, type, text, summary, context, project,
                 priority, urgency, due_at, created_at, source,
-                references, status, raw_json
+                references_json, status, raw_json
             ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);
             """,
             payload,
