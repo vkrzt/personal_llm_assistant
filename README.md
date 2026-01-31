@@ -5,6 +5,49 @@ Telegram assistant that captures voice or text, structures it, and helps with
 planning and recall. The assistant should feel like a smart secretary:
 "Got it, organized it, and will help you remember it on time."
 
+## Quickstart
+
+### 1) Install dependencies
+
+```
+python -m venv .venv
+source .venv/bin/activate
+pip install -r requirements.txt -r requirements-dev.txt
+```
+
+### 2) Configure environment
+
+Copy `.env.example` to `.env` and fill in:
+
+- `TELEGRAM_BOT_TOKEN`
+- `OPENAI_API_KEY`
+
+Optional:
+- `OPENAI_MODEL` (default: gpt-4o-mini)
+- `OPENAI_TRANSCRIBE_MODEL` (default: whisper-1)
+- `DB_PATH` (default: ./assistant.db)
+- `TIMEZONE` (default: UTC)
+- `LOCALES` (default: en,ru)
+
+### 3) Run the bot
+
+```
+python main.py
+```
+
+### 4) Run tests
+
+```
+pytest
+```
+
+### Commands
+
+- `/plan_today` - show items due today
+- `/plan_week` - show items due this week
+- `/tasks [context]` - list open tasks
+- `/search <query>` - search stored items
+
 ## 1. Product Goal
 
 Create a personal Telegram assistant that helps the user:
